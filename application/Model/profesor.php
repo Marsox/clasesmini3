@@ -1,6 +1,6 @@
 <?php 
 
-class profesor {
+class Profesor {
 
 	private $email;
 	private $nombre;
