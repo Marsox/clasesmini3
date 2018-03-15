@@ -73,7 +73,7 @@ class ProfesorController extends Controller {
 		$pass = $_POST['pass'];
 		$pass2 = $_POST['pass2'];
 		$departamento = $_POST['departamento'];
-		if(true){//@TO-DO: comprobar campos
+		if(!empty($email) && !empty($nombre) && !empty($apellidos) && !empty($pass) && !empty($pass2) && !empty($departamento)){
 			$profesor = Profesor::nuevoProfesor($email, $nombre, $apellidos, $pass, $departamento);
 			if ($profesor !== false) {
 				$_SESSION['user'] = $profesor;
