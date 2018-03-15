@@ -4,8 +4,8 @@
 		<input type="text" name="nombre">
 	</p>
 	<p>
-		<label for="apellido">apellidos</label>
-		<input type="text" name="apellido">
+		<label for="apellidos">apellidos</label>
+		<input type="text" name="apellidos">
 	</p>
 	<p>
 		<label for="email">email</label>
