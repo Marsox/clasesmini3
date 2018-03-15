@@ -24,4 +24,6 @@
 		<input type="password" name="pass2">
 	</p>
 	<input type="submit" value="Registrarse">
+<p>¿Ya tienes cuenta? Entra <a href="<?=URL?>alumno/login">Aquí</a></p>
+
 </form>
