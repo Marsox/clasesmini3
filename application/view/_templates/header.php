@@ -26,7 +26,7 @@
         <?php 
         session_start();
         if (isset($_SESSION['user'])) {?>
-            <a href="<?php echo $_SESSION['user'])->getLogoutURL(); ?>songs">songs</a>   
+            <a href="<?php echo $_SESSION['user']->getLogoutURL(); ?>songs">songs</a>   
         <?php 
         }
         ?>
