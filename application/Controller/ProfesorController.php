@@ -9,7 +9,7 @@ class ProfesorController extends Controller {
 
 	public function index(){
 		if (!isset($_SESSION['user'])) {
-			$this->login();
+			header('Location: '.URL.'profesor/login');
 		}else{
 			require APP.'view/_templates/header.php';
 			echo "Bienvenido, Profesor!";
@@ -20,7 +20,7 @@ class ProfesorController extends Controller {
 	public function login(){
 		session_start();
 		if (isset($_SESSION['user'])) {
-			$this->index();
+			header('Location: '.URL.'profesor');
 		}else{
 			require APP.'view/_templates/header.php';
 			require APP.'view/profesor/loginform.php';
@@ -37,28 +37,28 @@ class ProfesorController extends Controller {
 				if ($profesor->auth($pass)) {
 					session_start();
 					$_SESSION['user'] = $profesor;
-					$this->index();
+					header('Location: '.URL.'profesor');
 				}else{
-					$this->login();
+					header('Location: '.URL.'profesor/login');
 				}
 			}else{
-				$this->login();
+				header('Location: '.URL.'profesor/login');
 			}
 		}else{
-			$this->login();
+			header('Location: '.URL.'profesor/login');
 		}
 	}
 
 	public function actionLogout(){
 		session_start();
 		session_destroy();
-		$this->index();
+		header('Location: '.URL.'profesor');
 	}
 
 	public function register($errors = array()){
 		session_start();
 		if (isset($_SESSION['user'])) {
-			$this->index();
+			header('Location: '.URL.'profesor');
 		}else{
 			require APP.'view/_templates/header.php';
 			require APP.'view/profesor/registerform.php';
@@ -77,7 +77,7 @@ class ProfesorController extends Controller {
 			$profesor = Profesor::nuevoProfesor($email, $nombre, $apellidos, $pass, $departamento);
 			if ($profesor !== false) {
 				$_SESSION['user'] = $profesor;
-				$this->index();
+				header('Location: '.URL.'profesor');
 			}else{
 				$this->register();
 			}
