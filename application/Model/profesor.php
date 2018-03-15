@@ -1,20 +1,19 @@
 <?php 
 
+namespace Mini\Model;
+
 use Mini\Core\Model;
 
-class Profesor {
+class Profesor extends Authenticable{
 
-	private $email;
 	private $nombre;
 	private $apellidos;
-	private $md5password;
 	private $departamento;
 
-	private function __construct($email, $nombre, $apellidos, $md5password, $departamento){
-		$this->email = $email;
+	protected function __construct($email, $nombre, $apellidos, $password, $departamento){
+		parent::__construct($email, $password);
 		$this->nombre = $nombre;
 		$this->apellidos = $apellidos;
-		$this->md5password = $md5password;
 		$this->departamento = $departamento;
 	}
 
@@ -23,12 +22,13 @@ class Profesor {
 		if (self::getByEmail($email) !== false){
 			return false;
 		}else{
-			
-			$profesor = new Profesor($email, $nombre, $apellidos, md5($pass), $departamento);
+			$db = (new Model())->db;
+
+			$profesor = new Profesor($email, $nombre, $apellidos, $pass, $departamento);
 			$sql = "INSERT INTO profesor (email, nombre, apellidos, md5password, departamento) 
 														VALUES (:email, :nombre, :apellidos, :md5password, :departamento) ";
-			$query = $this->db->prepare($sql);
-			$parameters = array(':email' => $email, ':nombre' => $nombre, ':apellidos' => $apellidos, ':md5password' => $md5password, ':departamento' => $departamento);
+			$query = $db->prepare($sql);
+			$parameters = array(':email' => $email, ':nombre' => $nombre, ':apellidos' => $apellidos, ':md5password' => md5($pass), ':departamento' => $departamento);
 
 			$query->execute($parameters);
 
@@ -36,25 +36,7 @@ class Profesor {
 		}
 
 	}
-
-	public static function getByEmail($email){
-		$db = (new Model())->db;
-
-		$sql = "SELECT * FROM profesor WHERE email = '".$email."'";
-		$query = $db->prepare($sql);
-		$query->execute();
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);
-
-		if (count($result)>0){
-			return $result[0];
-		}else{
-			return false;
-		}
-	}
 	
-	public function getEmail() {
-		return $this->email;
-	}
 	public function getNombre(){
 		return $this->nombre;
 	}
@@ -65,9 +47,6 @@ class Profesor {
 		return $this->departamento;
 	}
 
-	public function setEmail($email){
-		$this->email = $email;
-	}
 	public function setNombre($nombre){
 		$this->nombre = $nombre;
 	}
@@ -77,8 +56,6 @@ class Profesor {
 	public function setDepartamento($departamento){
 		$this->departamento = $departamento;
 	}
-
-
 
 }
 
