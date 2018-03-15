@@ -10,8 +10,8 @@ class Alumno extends Authenticable{
 	private $apellidos;
 	private $curso;
 
-	private function __construct($nombre, $apellidos, $email, $md5password, $curso) {
-		parent::__construct($email, $md5password);
+	protected function __construct($nombre, $apellidos, $email, $password, $curso) {
+		parent::__construct($email, $password);
 		$this->nombre = $nombre;
 		$this->apellidos = $apellidos;
 		$this->curso = $curso;
@@ -24,11 +24,11 @@ class Alumno extends Authenticable{
 		} else {
 			$db = (new Model())->db;
 
-			$alumno = new Alumno($nombre, $apellidos, $email, $md5($pass), $curso);
+			$alumno = new Alumno($nombre, $apellidos, $email, $pass, $curso);
 			$sql = "INSERT INTO alumno (nombre, apellidos, email, md5password, curso)
 							VALUES (:nombre, :apellidos, :email, :md5password, :curso) ";
 			$query = $db->prepare($sql);
-			$parameters = array(':nombre' => $nombre, ':apellidos' => $apellidos, ':email' => $email, ':md5password' => $md5password, ':curso' => $curso);
+			$parameters = array(':nombre' => $nombre, ':apellidos' => $apellidos, ':email' => $email, ':md5password' => md5($pass), ':curso' => $curso);
 
 			$query->execute($parameters);
 
