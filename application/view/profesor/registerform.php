@@ -1,4 +1,4 @@
-<form action="profesor/actionRegister" method="POST">
+<form action="<?=URL?>profesor/actionRegister" method="POST">
 	<p>
 		<label for="nombre">nombre</label>
 		<input type="text" name="nombre">

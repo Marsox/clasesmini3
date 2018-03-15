@@ -1,4 +1,4 @@
-<form action="profesor/actionLogin" method="POST">
+<form action="<?=URL?>profesor/actionLogin" method="POST">
 	<p>
 	<label for="email">email</label>
 		<input type="text" name="email">
