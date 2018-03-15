@@ -3,17 +3,18 @@
 namespace Mini\Controller;
 
 use Mini\Core\Controller;
-use Mini\Model\profesor;
+use Mini\Model\Profesor;
 
 class ProfesorController extends Controller {
 
 	public function index(){
 		if (!isset($_SESSION['user'])) {
 			$this->login();
+		}else{
+			require APP.'view/_templates/header.php';
+			echo "Bienvenido, Profesor!";
+			require APP.'view/_templates/footer.php';
 		}
-		require APP.'view/_templates/header.php';
-		echo "Bienvenido, Profesor!";
-		require APP.'view/_templates/footer.php';
 	}
 
 	public function login(){
