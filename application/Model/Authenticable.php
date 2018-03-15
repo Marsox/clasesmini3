@@ -12,7 +12,7 @@ class Authenticable{
 
 	protected function __construct($email, $password){
 		$this->email = $email;
-		$this->md5password = md5($password);
+		$this->md5pass = md5($password);
 	}
 
 	public function getEmail() {
