@@ -23,4 +23,11 @@
         <a href="<?php echo URL; ?>home/exampleone">home/exampleone</a>
         <a href="<?php echo URL; ?>home/exampletwo">home/exampletwo</a>
         <a href="<?php echo URL; ?>songs">songs</a>
+        <?php 
+        session_start();
+        if (isset($_SESSION['user'])) {?>
+            <a href="<?php echo $_SESSION['user'])->getLogoutURL(); ?>songs">songs</a>   
+        <?php 
+        }
+        ?>
     </div>
