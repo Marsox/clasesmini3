@@ -36,7 +36,7 @@ class AlumnoController extends Controller {
 			if ($alumno !== false ) {
 				if ($alumno->auth($pass)) {
 					session_start();
-					$_SESSION['iser'] = $alumno;
+					$_SESSION['user'] = $alumno;
 					header('Location: '.URL.'alumno');
 				} else {
 					header('Location: '.URL.'alumno/login');
