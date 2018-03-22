@@ -9,7 +9,7 @@ class AlumnoController extends Controller {
 
 	public function index() {
 		if (!isset($_SESSION['user'])) {
-			header('Location: '.URL.'alumno');
+			header('Location: '.URL.'alumno/login');
 		}else{
 			require APP.'view/_templates/header.php';
 			echo "Bienvenido, Alumno!";

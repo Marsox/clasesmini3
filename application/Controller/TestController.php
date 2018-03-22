@@ -9,11 +9,14 @@ use Mini\Model\Profesor;
 class TestController extends Controller{
 	
 	public function getAllAlumnos(){
-		echo get_class((Alumno::all())[0]);
+		//echo get_class( (Alumno::all())[0] );
 	}
 
-	public function session(){
+	public function session($action=""){
 		session_start();
+		if($action=="destroy"){
+			session_destroy();
+		}
 		echo json_encode($_SESSION);
 		if (isset($_SESSION['user'])) {
 			echo get_class($_SESSION['user']);
