@@ -8,8 +8,9 @@ use Mini\Model\Profesor;
 
 class TestController extends Controller{
 	
-	public function getAllAlumnos(){
-		//echo get_class( (Alumno::all())[0] );
+	public function getAlumno($email){
+		echo json_encode(Alumno::getByEmail($email));
+		echo get_class(Alumno::getByEmail($email));
 	}
 
 	public function session($action=""){
