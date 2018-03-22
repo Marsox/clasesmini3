@@ -6,16 +6,9 @@ use Mini\Core\Model;
 
 class Alumno extends Authenticable{
 
-	private $nombre;
-	private $apellidos;
-	private $curso;
-
-	protected function __construct($nombre, $apellidos, $email, $password, $curso) {
-		parent::__construct($email, $password);
-		$this->nombre = $nombre;
-		$this->apellidos = $apellidos;
-		$this->curso = $curso;
-	}
+	public $nombre;
+	public $apellidos;
+	public $curso;
 
 	public static function nuevoAlumno($nombre, $apellidos, $email, $pass, $curso) {
 
@@ -24,7 +17,6 @@ class Alumno extends Authenticable{
 		} else {
 			$db = (new Model())->db;
 
-			$alumno = new Alumno($nombre, $apellidos, $email, $pass, $curso);
 			$sql = "INSERT INTO alumno (nombre, apellidos, email, md5password, curso)
 							VALUES (:nombre, :apellidos, :email, :md5password, :curso) ";
 			$query = $db->prepare($sql);
@@ -32,7 +24,7 @@ class Alumno extends Authenticable{
 
 			$query->execute($parameters);
 
-			return $alumno;
+			return self::getByEmail($email);
 
 		}
 	}
