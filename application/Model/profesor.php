@@ -17,10 +17,10 @@ class Profesor extends Authenticable{
 		}else{
 			$db = (new Model())->db;
 
-			$sql = "INSERT INTO profesor (email, nombre, apellidos, md5password, departamento) 
-														VALUES (:email, :nombre, :apellidos, :md5password, :departamento) ";
+			$sql = "INSERT INTO profesor (email, nombre, apellidos, md5pass, departamento) 
+														VALUES (:email, :nombre, :apellidos, :md5pass, :departamento) ";
 			$query = $db->prepare($sql);
-			$parameters = array(':email' => $email, ':nombre' => $nombre, ':apellidos' => $apellidos, ':md5password' => md5($pass), ':departamento' => $departamento);
+			$parameters = array(':email' => $email, ':nombre' => $nombre, ':apellidos' => $apellidos, ':md5pass' => md5($pass), ':departamento' => $departamento);
 
 			$query->execute($parameters);
 
