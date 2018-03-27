@@ -21,10 +21,16 @@
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
         <?php
-        if (isset($_SESSION['user'])) {?>
-            <a href="<?php echo $_SESSION['user']->getLogoutURL(); ?>">Logout</a>
+        if (isset($_SESSION['user'])) { ?>
+            <a href="<?=$_SESSION['user']->getLogoutURL(); ?>">Logout</a>
         <?php 
-        }else{?>
+            if (get_class($_SESSION['user']) == 'Mini\Model\Profesor') { ?>
+                <a href="<?=URL ?>post/crear">Crear Post</a>
+                <a href="<?=URL ?>post">Todos los Post</a>
+                <a href="<?=URL ?>post/index/<?=$_SESSION['user']->getEmail()?>">Mis Post</a>
+            <?php
+            }
+        }else{ ?>
             <a href="<?=URL ?>alumno/login">Acceder Alumno</a>
             <a href="<?=URL ?>profesor/login">Aceder Profesor</a>
 
