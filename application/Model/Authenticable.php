@@ -42,6 +42,12 @@ class Authenticable{
 		}
 	}
 
+	public function getLogoutURL()	{
+		$shortClassName = strtolower(get_called_class());
+		$shortClassName = array_reverse(explode('\\',$shortClassName))[0];
+		return URL.$shortClassName.'/actionLogout';
+	}
+
 }
 
 
