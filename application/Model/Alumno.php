@@ -35,7 +35,16 @@ class Alumno extends Authenticable{
 		$sql = "SELECT * FROM alumno";
 		$query = $db->prepare($sql);
 		$query->execute();
-		return $query->fetchAll();
+		$dbResult = $query->fetchAll();
+		$result = array();
+		foreach ($dbResult as $alumnoComoArray) {
+			$a = new Alumno();
+			foreach ($alumnoComoArray as $field => $value) {
+				$a->$field = $value;
+			}
+			array_push($result, $a);
+		}
+		return $result;
 	}
 
 	public function getNombre() {
