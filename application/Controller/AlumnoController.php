@@ -4,6 +4,7 @@ namespace Mini\Controller;
 
 use Mini\Core\Controller;
 use Mini\Model\Alumno;
+use Mini\Model\Post;
 
 class AlumnoController extends Controller {
 
@@ -12,7 +13,8 @@ class AlumnoController extends Controller {
 			header('Location: '.URL.'alumno/login');
 		}else{
 			require APP.'view/_templates/header.php';
-			echo "Bienvenido, Alumno!";
+			$posts = Post::all();
+			require APP.'view/alumno/listaposts.php';
 			require APP.'view/_templates/footer.php';
 		}
 	}
