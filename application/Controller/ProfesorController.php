@@ -50,7 +50,6 @@ class ProfesorController extends Controller {
 	}
 
 	public function actionLogout(){
-		session_start();
 		session_destroy();
 		header('Location: '.URL.'profesor');
 	}

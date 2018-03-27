@@ -12,8 +12,8 @@ class Alumno extends Authenticable{
 
 	public static function nuevoAlumno($nombre, $apellidos, $email, $pass, $curso) {
 
-		if (self::getByEmail($email) != false) {
-			return false;
+		if (self::getByEmail($email) != false) {//Comprobamos si existe un usuario con ese email
+			return false;//Y en ese caso, no lo podemos crear
 		} else {
 			$db = (new Model())->db;
 

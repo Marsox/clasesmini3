@@ -1,6 +1,6 @@
 
     <div class="footer">
-        Projet by <a href="https://github.com/Marsox">Marsox</a>
+        Project by <a href="https://github.com/Marsox">Marsox</a>
     </div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->

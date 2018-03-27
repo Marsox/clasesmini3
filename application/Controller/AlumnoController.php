@@ -14,7 +14,7 @@ class AlumnoController extends Controller {
 		}else{
 			require APP.'view/_templates/header.php';
 			$posts = Post::all();
-			require APP.'view/alumno/listaposts.php';
+			require APP.'view/post/lista.php';
 			require APP.'view/_templates/footer.php';
 		}
 	}
@@ -52,7 +52,6 @@ class AlumnoController extends Controller {
 	}
 
 	public function actionLogout() {
-		session_start();
 		session_destroy();
 		header('Location: '.URL.'alumno');
 	}
