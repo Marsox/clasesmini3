@@ -20,14 +20,15 @@
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL; ?>home/exampleone">home/exampleone</a>
-        <a href="<?php echo URL; ?>home/exampletwo">home/exampletwo</a>
-        <a href="<?php echo URL; ?>songs">songs</a>
-        <?php 
-        session_start();
+        <?php
         if (isset($_SESSION['user'])) {?>
-            <a href="<?php echo $_SESSION['user']->getLogoutURL(); ?>songs">songs</a>   
+            <a href="<?php echo $_SESSION['user']->getLogoutURL(); ?>">Logout</a>
         <?php 
+        }else{?>
+            <a href="<?=URL ?>alumno/login">Acceder Alumno</a>
+            <a href="<?=URL ?>profesor/login">Aceder Profesor</a>
+
+        <?php
         }
         ?>
     </div>
