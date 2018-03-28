@@ -1,24 +1,34 @@
 <?php 
 
-class profesor {
+namespace Mini\Model;
 
-	private $email;
-	private $nombre;
-	private $apellidos;
-	private $md5password;
-	private $departamento;
+use Mini\Core\Model;
 
-	private function __construct($email, $nombre, $apellidos, $md5password, $departamento){
-		$this->email = $email;
-		$this->nombre = $nombre;
-		$this->apellidos = $apellidos;
-		$this->md5password = $md5password;
-		$this->departamento = $departamento;
+class Profesor extends Authenticable{
+
+	public $nombre;
+	public $apellidos;
+	public $departamento;
+
+	public static function nuevoProfesor($email, $nombre, $apellidos, $pass, $departamento){
+
+		if (self::getByEmail($email) !== false){
+			return false;
+		}else{
+			$db = (new Model())->db;
+
+			$sql = "INSERT INTO profesor (email, nombre, apellidos, md5pass, departamento) 
+														VALUES (:email, :nombre, :apellidos, :md5pass, :departamento) ";
+			$query = $db->prepare($sql);
+			$parameters = array(':email' => $email, ':nombre' => $nombre, ':apellidos' => $apellidos, ':md5pass' => md5($pass), ':departamento' => $departamento);
+
+			$query->execute($parameters);
+
+			return self::getByEmail($email);
+		}
+
 	}
 	
-	public function getEmail() {
-		return $this->email;
-	}
 	public function getNombre(){
 		return $this->nombre;
 	}
@@ -29,9 +39,6 @@ class profesor {
 		return $this->departamento;
 	}
 
-	public function setEmail($email){
-		$this->email = $email;
-	}
 	public function setNombre($nombre){
 		$this->nombre = $nombre;
 	}
@@ -41,8 +48,6 @@ class profesor {
 	public function setDepartamento($departamento){
 		$this->departamento = $departamento;
 	}
-
-
 
 }
 
