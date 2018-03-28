@@ -1,16 +1,28 @@
-<form action="<?=URL?>post/actionCrear" method="POST">
+<?php 
+
+$actionUrl = (isset($post)) ? 'actionEditar/'.$post->getId() : 'actionCrear';
+$titulo = (isset($post)) ? $post->getTitulo() : '';
+$cuerpo = (isset($post)) ? $post->getCuerpo() : '';
+$urlImagen = (isset($post)) ? $post->getUrlImagen() : '';
+
+$submitText = (isset($post)) ? "Crear" : "Guardar";
+?>
+
+
+<div class="container">
+<form action="<?=URL?>post/<?=$actionUrl?>" method="POST">
 	<p>
-	<label for="titulo">titulo</label>
-		<input type="text" name="titulo">
+	<label for="titulo">Titulo</label>
+		<input type="text" name="titulo" value="<?=$titulo?>">
 	</p>
 	<p>
-	<label for="cuerpo">cuerpo</label>
-		<input type="text" name="cuerpo">
+	<label for="cuerpo">Cuerpo</label>
+		<textarea name="cuerpo"><?=$cuerpo?></textarea>
 	</p>
 	<p>
 	<label for="urlImagen">Imagen</label>
-		<input type="text" name="urlImagen">
+		<input type="text" name="urlImagen" value="<?=$urlImagen?>">
 	</p>
-	<p>
-	<input type="submit" value="Crear">
+	<input type="submit" value="<?=$submitText?>">
 </form>
+</div>

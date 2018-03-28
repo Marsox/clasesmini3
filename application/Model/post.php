@@ -105,9 +105,64 @@ class Post {
 		return $result;
 	}
 
-// Hacer un getById.
-// Get y Set.
-// Funcion nuevo post.
+	public function update() {
+		$db = (new Model())->db;
+		$sql = "UPDATE post SET titulo = :titulo, cuerpo = :cuerpo, urlImagen = :urlImagen, isPublic = :isPublic, fecha = :fecha, emailAuthor = :emailAuthor WHERE id = '".$this->id."'";
+		$query = $db->prepare($sql);
+		$parameters = array(':titulo' => $this->titulo, 
+												':cuerpo' => $this->cuerpo, 
+												':urlImagen' => $this->urlImagen, 
+												':isPublic' => $this->isPublic, 
+												':fecha' => $this->fecha, 
+												':emailAuthor' => $this->emailAuthor);
+		$query->execute($parameters);
+	}
+
+	public function borrar() {
+		$db = (new Model())->db;
+		$sql = "DELETE FROM post WHERE id = '".$this->id."'";
+		$query = $db->prepare($sql);
+		$query->execute();
+	}
+
+	public function getId() {
+		return $this->id;
+	}
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	public function getCuerpo() {
+		return $this->cuerpo;
+	}
+	public function getUrlImagen() {
+		return $this->urlImagen;
+	}
+	public function getIsPublic() {
+		return $this->isPublic;
+	}
+	public function getFecha() {
+		return $this->fecha;
+	}
+	public function getEmailAuthor() {
+		return $this->emailAuthor;
+	}
+
+	public function setTitulo($titulo) {
+		$this->titulo = $titulo;
+	}
+	public function setCuerpo($cuerpo) {
+		$this->cuerpo = $cuerpo;
+	}
+	public function setUrlImagen($urlImagen) {
+		$this->urlImagen = $urlImagen;
+	}
+	public function setIsPublic($isPublic) {
+		$this->isPublic = $isPublic;
+	}
+	public function setFecha($fecha) {
+		$this->fecha = $fecha;
+	}
+
 
 }
 
