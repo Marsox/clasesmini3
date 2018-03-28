@@ -22,10 +22,10 @@ class PostController extends Controller {
 
 	public function crear() {
 		if (!isset($_SESSION['user'])) {
-			header('Locaticon: '.URL.'profesor/login');
+			header('Location: '.URL.'profesor/login');
 		}else{
 			if (!get_class($_SESSION['user']) == 'Mini\Model\Profesor') {
-				header('Locaticon: '.URL);
+				header('Location: '.URL);
 			}else{
 				require APP.'view/_templates/header.php';
 				require APP.'view/post/createpostform.php';
@@ -36,10 +36,10 @@ class PostController extends Controller {
 
 	public function actionCrear(){
 		if (!isset($_SESSION['user'])) {
-			header('Locaticon: '.URL.'profesor/login');
+			header('Location: '.URL.'profesor/login');
 		}else{
 			if (!get_class($_SESSION['user']) == 'Mini\Model\Profesor') {
-				header('Locaticon: '.URL);
+				header('Location: '.URL);
 			}else{
 				$titulo = $_POST['titulo'];
 				$cuerpo = $_POST['cuerpo'];
@@ -52,7 +52,7 @@ class PostController extends Controller {
 					$post = Post::nuevoPost($titulo, $cuerpo, $urlImagen, $isPublic, $fecha, $emailAuthor);
 					header('Location: '.URL.'post/detalle/'.$post->id);
 				}else{
-					header('Locaticon: '.URL.'post/crear');
+					header('Location: '.URL.'post/crear');
 				}
 			}
 		}
@@ -60,7 +60,7 @@ class PostController extends Controller {
 
 	public function detalle($id){
 		$post = Post::getById($id);
-		if (!$post->isPublic && !isset($_SESSION['user'])) {
+		if ($post!= false && !$post->isPublic && !isset($_SESSION['user'])) {
 			header('Location: '.URL);
 		}else{
 			require APP.'view/_templates/header.php';
