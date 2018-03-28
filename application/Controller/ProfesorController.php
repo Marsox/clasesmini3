@@ -12,7 +12,11 @@ class ProfesorController extends Controller {
 			header('Location: '.URL.'profesor/login');
 		}else{
 			require APP.'view/_templates/header.php';
-			echo "Bienvenido, Profesor!";
+			?>
+			<div class="container">
+				<?php echo "Bienvenido, Profesor!"; ?>
+			</div>
+			<?php
 			require APP.'view/_templates/footer.php';
 		}
 	}
