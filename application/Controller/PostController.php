@@ -14,9 +14,8 @@ class PostController extends Controller {
 		}else{
 			$posts = Post::allPublic();
 		}
-		require APP.'view/_templates/header.php';
-		require APP.'view/post/lista.php';
-		require APP.'view/_templates/footer.php';
+		$this->view->addData(['titulo' => (($profEmail == '') ? 'Todos los Posts' : 'Posts de '.Profesor::getByEmail($profEmail)->getNombre()), 'posts' => $posts]);
+		echo $this->view->render('post/lista');
 			
 	}
 
@@ -27,9 +26,8 @@ class PostController extends Controller {
 			if (!get_class($_SESSION['user']) == 'Mini\Model\Profesor') {
 				header('Location: '.URL);
 			}else{
-				require APP.'view/_templates/header.php';
-				require APP.'view/post/createpostform.php';
-				require APP.'view/_templates/footer.php';
+				$this->view->addData(['titulo' => 'Crear Post']);
+				echo $this->view->render('post/createpostform');
 			}
 		}
 	}
@@ -63,9 +61,8 @@ class PostController extends Controller {
 		if ($post!= false && !$post->isPublic && !isset($_SESSION['user'])) {
 			header('Location: '.URL);
 		}else{
-			require APP.'view/_templates/header.php';
-			require APP.'view/post/detalle.php';
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo' => $post->getTitulo(), 'post' => $post ]);
+			echo $this->view->render('post/detalle');
 		}
 	}
 
@@ -78,9 +75,8 @@ class PostController extends Controller {
 			}else{
 				$post = Post::getById($id);
 				if ($post != false) {
-					require APP.'view/_templates/header.php';
-					require APP.'view/post/createpostform.php';
-					require APP.'view/_templates/footer.php';
+					$this->view->addData(['titulo' => 'Editar Post', 'post' => $post]);
+					echo $this->view->render('post/createpostform');
 				}else{
 					header('Location: '.URL);
 				}

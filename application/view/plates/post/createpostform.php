@@ -1,3 +1,5 @@
+<?php $this->layout('layout') ?>
+
 <?php 
 
 $actionUrl = (isset($post)) ? 'actionEditar/'.$post->getId() : 'actionCrear';

@@ -1,4 +1,5 @@
-<?php use Mini\Model\Profesor;?>
+<?php $this->layout('layout') ?>
+<?php  use Mini\Model\Profesor;?> 
 
 <div class="container">
 	<img src="<?= $post->getUrlImagen() ?>" style="width: 500px">
