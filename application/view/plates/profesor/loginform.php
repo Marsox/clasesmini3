@@ -1,3 +1,4 @@
+<?php $this->layout('layout') ?>
 <div class="container">
 	<form action="<?=URL?>profesor/actionLogin" method="POST">
 		<p>
