@@ -8,7 +8,7 @@ class HomeController extends Controller {
 
 	public function index() {
 		$this->view->addData(['titulo' => "Bienvenido"]);
-  	echo $this->view->render("home/index", []);
+  	echo $this->view->render("home/index");
 	}
 
 
