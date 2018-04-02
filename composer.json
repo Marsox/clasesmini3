@@ -18,7 +18,7 @@
     {
         "kint-php/kint" : "2.2",
         "phpmailer/phpmailer" : "v6.0.1",
-        "league/plates": "^3.0@dev"
+        "league/plates": "^3.0"
     },
     "autoload":
     {

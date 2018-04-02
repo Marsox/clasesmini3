@@ -11,7 +11,7 @@ class TemplatesFactory
 	public static function templates()
 	{
 		if ( ! TemplatesFactory::$templates) {
-			TemplatesFactory::$templates = new \League\Plates\Engine(APP . 'view');
+			TemplatesFactory::$templates = new \League\Plates\Engine(APP . 'view/plates');
 			TemplatesFactory::$templates->addData(['titulo' => 'Mini3']);
 			TemplatesFactory::$templates->registerFunction(
 				'borrar_msg_feedback', function(){
