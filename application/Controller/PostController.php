@@ -75,8 +75,12 @@ class PostController extends Controller {
 			}else{
 				$post = Post::getById($id);
 				if ($post != false) {
-					$this->view->addData(['titulo' => 'Editar Post', 'post' => $post]);
-					echo $this->view->render('post/createpostform');
+					if ($post->getEmailAuthor() != $_SESSION['user']->getEmail()) {
+						header('Location: '.URL.'post/detalle/'.$id);
+					}else{
+						$this->view->addData(['titulo' => 'Editar Post', 'post' => $post]);
+						echo $this->view->render('post/createpostform');
+					}
 				}else{
 					header('Location: '.URL);
 				}
