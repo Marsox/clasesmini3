@@ -11,24 +11,17 @@ class ProfesorController extends Controller {
 		if (!isset($_SESSION['user'])) {
 			header('Location: '.URL.'profesor/login');
 		}else{
-			require APP.'view/_templates/header.php';
-			?>
-			<div class="container">
-				<?php echo "Bienvenido, Profesor!"; ?>
-			</div>
-			<?php
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo'=>'Bienvenido Profesor']);
+			echo $this->view->render('profesor/index');
 		}
 	}
 
 	public function login(){
-		session_start();
 		if (isset($_SESSION['user'])) {
 			header('Location: '.URL.'profesor');
 		}else{
-			require APP.'view/_templates/header.php';
-			require APP.'view/profesor/loginform.php';
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo'=>'Login Profesor']);
+			echo $this->view->render('profesor/loginform');
 		}
 	}
 
@@ -59,13 +52,11 @@ class ProfesorController extends Controller {
 	}
 
 	public function register($errors = array()){
-		session_start();
 		if (isset($_SESSION['user'])) {
 			header('Location: '.URL.'profesor');
 		}else{
-			require APP.'view/_templates/header.php';
-			require APP.'view/profesor/registerform.php';
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo'=>'Registro Profesor']);
+			echo $this->view->render('profesor/registerform');
 		}
 	}
 

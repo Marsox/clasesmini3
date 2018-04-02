@@ -12,21 +12,17 @@ class AlumnoController extends Controller {
 		if (!isset($_SESSION['user'])) {
 			header('Location: '.URL.'alumno/login');
 		}else{
-			require APP.'view/_templates/header.php';
-			$posts = Post::all();
-			require APP.'view/post/lista.php';
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo'=>'Bienvenido Alumno', 'posts' => Post::all()]);
+			echo $this->view->render('post/lista');
 		}
 	}
 
 	public function login() {
-		session_start();
 		if (isset($_SESSION['user'])) {
 			header('Location: '.URL.'alumno');
 		} else {
-			require APP.'view/_templates/header.php';
-			require APP.'view/alumno/loginform.php';
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo'=>'Login Alumno']);
+			echo $this->view->render('alumno/loginform');
 		}
 	}
 
@@ -57,13 +53,11 @@ class AlumnoController extends Controller {
 	}
 
 	public function register($errors = array()) {
-		session_start();
 		if (isset($_SESSION['user'])) {
 			header('Location: '.URL.'alumno');
 		} else {
-			require APP.'view/_templates/header.php';
-			require APP.'view/alumno/registerform.php';
-			require APP.'view/_templates/footer.php';
+			$this->view->addData(['titulo'=>'Registro Alumno']);
+			echo $this->view->render('alumno/registerform');
 		}
 	}
 

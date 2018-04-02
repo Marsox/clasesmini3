@@ -1,5 +1,6 @@
+<?php $this->layout('layout') ?>
 <div class="container">
-	<h2>Todos las Posts</h2>
+	<h2><?= $this->e($titulo)?></h2>
 	<?php if(count($posts) == 0) { ?>
 		<p>No hay posts en la Base de Datos</p>
 	<?php } else { ?>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MINI3</title>
+    <title><?= $titulo ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -38,3 +38,20 @@
         }
         ?>
     </div>
+
+
+		<?=$this->section('content')?>
+
+
+    <div class="footer">
+        Project by <a href="https://github.com/Marsox">Marsox</a>
+    </div>
+
+    <!-- jQuery, loaded in the recommended protocol-less way -->
+    <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- our JavaScript -->
+    <script src="<?php echo URL; ?>js/application.js"></script>
+</body>
+</html>
