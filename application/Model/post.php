@@ -14,15 +14,16 @@ class Post {
 	public $isPublic = true;
 	public $fecha;
 	public $emailAuthor;
+	public $categoria;
 
-	public static function nuevoPost($titulo, $cuerpo, $urlImagen, $isPublic, $fecha, $emailAuthor) {
+	public static function nuevoPost($titulo, $cuerpo, $urlImagen, $isPublic, $fecha, $emailAuthor, $categoria) {
 
 		$db = (new Model())->db;
 
-		$sql = "INSERT INTO post (titulo, cuerpo, urlImagen, isPublic, fecha, emailAuthor)
-						VALUES (:titulo, :cuerpo, :urlImagen, :isPublic, :fecha, :emailAuthor)";
+		$sql = "INSERT INTO post (titulo, cuerpo, urlImagen, isPublic, fecha, emailAuthor, categoria)
+						VALUES (:titulo, :cuerpo, :urlImagen, :isPublic, :fecha, :emailAuthor, :categoria)";
 		$query = $db->prepare($sql);
-		$parameters = array(':titulo' => $titulo, ':cuerpo' => $cuerpo, ':urlImagen' => $urlImagen, ':isPublic' => $isPublic, ':fecha' => $fecha, ':emailAuthor' => $emailAuthor);
+		$parameters = array(':titulo' => $titulo, ':cuerpo' => $cuerpo, ':urlImagen' => $urlImagen, ':isPublic' => $isPublic, ':fecha' => $fecha, ':emailAuthor' => $emailAuthor, ':categoria' => $categoria);
 
 		$query->execute($parameters);
 
@@ -107,14 +108,15 @@ class Post {
 
 	public function update() {
 		$db = (new Model())->db;
-		$sql = "UPDATE post SET titulo = :titulo, cuerpo = :cuerpo, urlImagen = :urlImagen, isPublic = :isPublic, fecha = :fecha, emailAuthor = :emailAuthor WHERE id = '".$this->id."'";
+		$sql = "UPDATE post SET titulo = :titulo, cuerpo = :cuerpo, urlImagen = :urlImagen, isPublic = :isPublic, fecha = :fecha, emailAuthor = :emailAuthor, categoria = :categoria WHERE id = '".$this->id."'";
 		$query = $db->prepare($sql);
 		$parameters = array(':titulo' => $this->titulo, 
 												':cuerpo' => $this->cuerpo, 
 												':urlImagen' => $this->urlImagen, 
 												':isPublic' => $this->isPublic, 
 												':fecha' => $this->fecha, 
-												':emailAuthor' => $this->emailAuthor);
+												':emailAuthor' => $this->emailAuthor,
+											  'categoria' => $this->categoria);
 		$query->execute($parameters);
 	}
 
